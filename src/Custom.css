@@ -1,0 +1,9 @@
+.header .jumbotron {
+  background-image: url("assets/images/home/DSC_4848-2.jpg");
+  background-size: cover;
+  min-height: 50vw;
+}
+
+.bg-black {
+  background-color: black;
+}
