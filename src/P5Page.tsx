@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import p5 from "p5";
+import NavBar from "./NavBar";
+import Footer from "./Footer";
 
 export default class P5Page extends Component {
   myRef: any;
@@ -10,7 +12,7 @@ export default class P5Page extends Component {
 
   Sketch = (p: any) => {
     p.setup = () => {
-      p.createCanvas(800, 600);
+      p.createCanvas(800, 500);
       p.background(0);
     };
 
@@ -22,6 +24,12 @@ export default class P5Page extends Component {
   }
 
   render() {
-    return <div ref={this.myRef}></div>;
+    return (
+      <div className="container">
+        <NavBar />
+        <div className="d-flex justify-content-center" ref={this.myRef}></div>
+        <Footer />
+      </div>
+    );
   }
 }
