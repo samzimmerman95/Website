@@ -3,19 +3,49 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <div className="jumbotron fixed bottom mb-0 bg-black">
-      <div className="container">
-        <div className="row text-white">
-          <div className="col-sm text-center">1 of 3</div>
-          <div className="col-sm text-center">
-            <Link to="/weather">Weather</Link>
-          </div>
+    <footer className="container border-top mt-5">
+      <div className="row pt-2">
+        <div className="col-sm ">
+          <Link className="navbar-brand text-dark" to="/">
+            Sam Zimmerman
+          </Link>
+        </div>
+        <div className="col-sm d-flex justify-content-center align-items-center">
+          <a
+            className="link-icon"
+            href="https://www.instagram.com/sammyzimm/"
+            target="_blank"
+          >
+            <i className="fab fa-instagram fa-2x px-3"></i>
+          </a>
 
-          <div className="col-sm text-center">
-            <Link to="/p5">p5</Link>
-          </div>
+          <a
+            className="link-icon"
+            href="https://www.youtube.com/channel/UCUifosWwaDhudQAO4Wqr2lw"
+            target="_blank"
+          >
+            <i className="fab fa-youtube fa-2x px-3"></i>
+          </a>
+          <a
+            className="link-icon"
+            href="https://github.com/samzimmerman95"
+            target="_blank"
+          >
+            <i className="fab fa-github fa-2x px-3"></i>
+          </a>
+          <a
+            className="link-icon"
+            href="https://www.linkedin.com/in/sz2020/"
+            target="_blank"
+          >
+            <i className="fab fa-linkedin fa-2x px-3"></i>
+          </a>
+        </div>
+
+        <div className="col-sm d-flex align-items-center small justify-content-end">
+          © Sam Zimmerman 2020
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
