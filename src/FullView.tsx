@@ -70,11 +70,8 @@ export default class FullView extends Component<
     return (
       <div>
         <div className="d-flex justify-content-end">
-          {/* <Link to={"/feed"} style={{ color: "#999999" }}>
-            <i className="fas fa-times mr-5 mt-2"></i>
-          </Link> */}
           <i
-            className="fas fa-times mr-5 mt-2"
+            className="fas fa-times mr-5 mt-2 text-dark"
             onClick={() => this.state.history.goBack()}
           ></i>
         </div>
@@ -85,7 +82,7 @@ export default class FullView extends Component<
           }}
         >
           <i
-            className="fas fa-chevron-left pr-4"
+            className="fas fa-chevron-left pr-4 text-dark"
             onClick={() => this.handleLeft()}
           ></i>
           <div className="d-flex justify-content-center mt-0">
@@ -100,7 +97,7 @@ export default class FullView extends Component<
             ></img>
           </div>
           <i
-            className="fas fa-chevron-right pl-4"
+            className="fas fa-chevron-right pl-4 text-dark"
             onClick={() => this.handleRight()}
           ></i>
         </div>
