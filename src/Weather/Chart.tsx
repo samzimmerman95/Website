@@ -111,6 +111,21 @@ function Chart({ width, height, data }: any) {
     }
     // svg.append("text").call(lineLabel);
     // svg.append("circle").call(endCircle);
+    svg
+      .append("rect")
+      .attr("x", width - 80)
+      .attr("y", 20)
+      .attr("width", 10)
+      .attr("height", 10)
+      .style("fill", "steelblue");
+
+    svg
+      .append("text")
+      .attr("x", width - 60)
+      .attr("y", 25)
+      .text("Sensor 1")
+      .style("font-size", "12px")
+      .attr("alignment-baseline", "middle");
 
     // Zooming functionality
     var zoom: any = d3
