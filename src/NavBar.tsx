@@ -29,14 +29,33 @@ export default function NavBar() {
             </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <Link className="nav-link" to="/adventures">
               Adventures
+            </Link>
+          </li>
+          <li className="nav-item dropdown">
+            <a
+              className="nav-link"
+              data-toggle="dropdown"
+              // role="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Projects
             </a>
+            <div className="dropdown-menu">
+              <Link className="text-dark dropdown-item" to="/weather">
+                Weather
+              </Link>
+              <Link className="text-dark dropdown-item" to="/p5">
+                P5.js Sketch
+              </Link>
+            </div>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <Link className="nav-link" to="/about">
               About Me
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
