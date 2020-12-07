@@ -43,7 +43,7 @@ export default function Footer() {
         </div>
 
         <div className="col-md d-md-flex align-items-center text-center small justify-content-end">
-          © Sam Zimmerman 2020
+          © 2020
         </div>
       </div>
     </footer>
