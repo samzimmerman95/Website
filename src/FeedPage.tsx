@@ -9,6 +9,7 @@ import {
 } from "./functions/createRows";
 import Images2016 from "./assets/images/feed/Images2016";
 import Images2017 from "./assets/images/feed/Images2017";
+import Images2018 from "./assets/images/feed/Images2018";
 
 export default function FeedPage() {
   return (
@@ -18,6 +19,7 @@ export default function FeedPage() {
         <h3 className="text-center text-muted">2020</h3>
         <h3 className="text-center text-muted">2019</h3>
         <h3 className="text-center text-muted">2018</h3>
+        {threeCols(Images2018, 0, 41, 2018)}
         <h3 className="text-center text-muted">2017</h3>
         {threeCols(Images2017, 0, 75, 2017)}
         <h3 className="text-center text-muted">2016</h3>

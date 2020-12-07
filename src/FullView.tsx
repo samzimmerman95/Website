@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import Images2016 from "./assets/images/feed/Images2016";
 import Images2017 from "./assets/images/feed/Images2017";
+import Images2018 from "./assets/images/feed/Images2018";
 
 type ImageState = {
   index: number;
@@ -37,6 +38,9 @@ export default class FullView extends Component<
       case 2017:
         this.setState({ currentYearList: Images2017 });
         break;
+      case 2018:
+        this.setState({ currentYearList: Images2018 });
+        break;
     }
   }
   componentWillUnmount() {
@@ -44,14 +48,18 @@ export default class FullView extends Component<
   }
 
   handleRight() {
-    if (this.state.index === 75 && this.state.year === 2017) {
+    if (this.state.index === 41 && this.state.year === 2018) {
+      this.setState({ index: 0, year: 2017, currentYearList: Images2017 });
+    } else if (this.state.index === 75 && this.state.year === 2017) {
       this.setState({ index: 0, year: 2016, currentYearList: Images2016 });
     } else {
       this.setState({ index: this.state.index + 1 });
     }
   }
   handleLeft() {
-    if (this.state.index === 0 && this.state.year === 2016) {
+    if (this.state.index === 0 && this.state.year === 2017) {
+      this.setState({ index: 41, year: 2018, currentYearList: Images2018 });
+    } else if (this.state.index === 0 && this.state.year === 2016) {
       this.setState({ index: 75, year: 2017, currentYearList: Images2017 });
     } else {
       this.setState({ index: this.state.index - 1 });
