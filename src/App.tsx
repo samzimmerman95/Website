@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import HomePage from "./HomePage";
 import FeedPage from "./FeedPage";
-import FullScreen from "./FullScreen";
+import AdventuresPage from "./AdventuresPage";
 import FullView from "./FullView";
 import P5Page from "./P5Page";
 import WeatherPage from "./Weather/WeatherPage";
@@ -19,9 +19,10 @@ function App() {
           <Route exact path="/feed">
             <FeedPage />
           </Route>
-          <Route exact path="/feed/fullScreen">
-            <FullScreen />
+          <Route exact path="/adventures">
+            <AdventuresPage />
           </Route>
+          <Route exact path="/about"></Route>
           <Route exact path="/feed/fullView" component={FullView} />
           <Route exact path="/p5">
             <P5Page />
