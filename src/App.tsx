@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import HomePage from "./HomePage";
 import FeedPage from "./FeedPage";
-import AdventuresPage from "./AdventuresPage";
+import AdventuresPage from "./adventure/AdventuresPage";
 import FullView from "./FullView";
 import P5Page from "./P5Page";
 import WeatherPage from "./Weather/WeatherPage";
@@ -19,7 +19,7 @@ function App() {
           <Route exact path="/feed">
             <FeedPage />
           </Route>
-          <Route exact path="/adventures">
+          <Route path="/adventures">
             <AdventuresPage />
           </Route>
           <Route exact path="/about"></Route>
