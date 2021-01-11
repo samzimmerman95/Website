@@ -70,7 +70,7 @@ export function threeCols(
   });
 
   return (
-    <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 ">
+    <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 px-1">
       <div className="col px-md-1 text-center">{col1}</div>
       <div className="col px-md-1 text-center">{col2}</div>
       <div className="col px-md-1 text-center">{col3}</div>
@@ -85,7 +85,7 @@ export function twoColsPanoLeft(
   year: number
 ) {
   return (
-    <div className="row row-sm-1 row-md-2 row-lg-3">
+    <div className="row row-sm-1 row-md-2 row-lg-3 px-1">
       <div className="col-md-8 px-md-1 text-center">
         <Link
           to={{
@@ -125,7 +125,7 @@ export function twoColsPanoRight(
   year: number
 ) {
   return (
-    <div className="row row-sm-1 row-md-2 row-lg-3">
+    <div className="row row-sm-1 row-md-2 row-lg-3 px-1">
       <div className="col-md-4 px-md-1 text-center">
         <Link
           to={{
@@ -162,7 +162,7 @@ export function twoColsPanoRight(
 export function oneColPano(imagePano: myImage, year: number) {
   return (
     <div className="row">
-      <div className="col px-md-1 text-center">
+      <div className="col px-md-2 text-center">
         <Link
           to={{
             pathname: "/feed/fullView",
@@ -179,14 +179,3 @@ export function oneColPano(imagePano: myImage, year: number) {
     </div>
   );
 }
-
-// Public Link of image in the folder:
-// https://drive.google.com/file/d/1cY-mtBLEQr-mWexB5Ap7H-Oi6402dT8C/view?usp=sharing
-
-// This is the ID extracted from that link:
-// 1cY-mtBLEQr-mWexB5Ap7H-Oi6402dT8C
-
-// Put that ID into this link and the picture will be accessible
-// http://drive.google.com/uc?export=view&id=<XXXX>
-
-// Use that link for the <img> src.
