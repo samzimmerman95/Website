@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import HomePage from "./HomePage";
-import FeedPage from "./FeedPage";
+import FeedPage from "./feed/FeedPage";
 import AdventuresPage from "./adventure/AdventuresPage";
 import FullView from "./FullView";
 import P5Page from "./P5Page";
