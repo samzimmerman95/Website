@@ -40,7 +40,7 @@ export default function adventureTitles() {
   }
 
   return (
-    <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2">
+    <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2 px-1">
       <div className="col px-md-1 text-center">{col1}</div>
       <div className="col px-md-1 text-center">{col2}</div>
     </div>
