@@ -3,6 +3,8 @@ import { RouteComponentProps } from "react-router-dom";
 import Images2016 from "./assets/images/feed/Images2016";
 import Images2017 from "./assets/images/feed/Images2017";
 import Images2018 from "./assets/images/feed/Images2018";
+import Images2019 from "./assets/images/feed/Images2019";
+import Images2020 from "./assets/images/feed/Images2020";
 
 type ImageState = {
   index: number;
@@ -21,7 +23,7 @@ export default class FullView extends Component<
       index: props.location.state.id,
       year: props.location.state.year,
       history: props.history,
-      currentYearList: Images2017, // Whatever is largest, only for intial render which is never seen
+      currentYearList: Images2019, // Whatever is largest, only for intial render which is never seen
     };
 
     this.handleArrow = this.handleArrow.bind(this);
@@ -41,6 +43,12 @@ export default class FullView extends Component<
       case 2018:
         this.setState({ currentYearList: Images2018 });
         break;
+      case 2019:
+        this.setState({ currentYearList: Images2019 });
+        break;
+      case 2020:
+        this.setState({ currentYearList: Images2020 });
+        break;
     }
   }
   componentWillUnmount() {
@@ -48,19 +56,68 @@ export default class FullView extends Component<
   }
 
   handleRight() {
-    if (this.state.index === 41 && this.state.year === 2018) {
-      this.setState({ index: 0, year: 2017, currentYearList: Images2017 });
-    } else if (this.state.index === 75 && this.state.year === 2017) {
-      this.setState({ index: 0, year: 2016, currentYearList: Images2016 });
-    } else {
-      this.setState({ index: this.state.index + 1 });
+    switch (this.state.index) {
+      case Images2020.length - 1:
+        if (this.state.year === 2020) {
+          this.setState({ index: 0, year: 2019, currentYearList: Images2019 });
+        }
+        break;
+      case Images2019.length - 1:
+        if (this.state.year === 2019) {
+          this.setState({ index: 0, year: 2018, currentYearList: Images2018 });
+        }
+        break;
+      case Images2018.length - 1:
+        if (this.state.year === 2018) {
+          this.setState({ index: 0, year: 2017, currentYearList: Images2017 });
+        }
+        break;
+      case Images2017.length - 1:
+        if (this.state.year === 2017) {
+          this.setState({ index: 0, year: 2016, currentYearList: Images2016 });
+        }
+        break;
+      case Images2016.length - 1:
+        break;
+      default:
+        this.setState({ index: this.state.index + 1 });
+        break;
     }
   }
   handleLeft() {
-    if (this.state.index === 0 && this.state.year === 2017) {
-      this.setState({ index: 41, year: 2018, currentYearList: Images2018 });
-    } else if (this.state.index === 0 && this.state.year === 2016) {
-      this.setState({ index: 75, year: 2017, currentYearList: Images2017 });
+    if (this.state.index === 0) {
+      switch (this.state.year) {
+        case 2020:
+          break;
+        case 2019:
+          this.setState({
+            index: Images2020.length - 1,
+            year: 2020,
+            currentYearList: Images2020,
+          });
+          break;
+        case 2018:
+          this.setState({
+            index: Images2019.length - 1,
+            year: 2019,
+            currentYearList: Images2019,
+          });
+          break;
+        case 2017:
+          this.setState({
+            index: Images2018.length - 1,
+            year: 2018,
+            currentYearList: Images2018,
+          });
+          break;
+        case 2016:
+          this.setState({
+            index: Images2017.length - 1,
+            year: 2017,
+            currentYearList: Images2017,
+          });
+          break;
+      }
     } else {
       this.setState({ index: this.state.index - 1 });
     }
