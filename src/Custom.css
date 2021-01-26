@@ -1,9 +1,36 @@
 .header .jumbotron {
-  background-image: url("assets/images/home/DSC_4848-2.jpg");
+  background-image: url("assets/images/feed/2019/DSC_4848.jpg");
   background-size: cover;
   min-height: 50vw;
 }
 
 .bg-black {
   background-color: black;
+}
+
+a.link-icon {
+  color: rgb(39, 42, 45);
+}
+
+.relativeContainer {
+  position: relative;
+}
+
+div.centerTitle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div.adventureTitleTextBox {
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+}
+
+div.adventureStoryTextBox {
+  position: absolute;
+  bottom: 2%;
+  width: 100%;
 }
