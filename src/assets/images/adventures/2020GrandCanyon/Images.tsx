@@ -1,0 +1,20 @@
+const images: any = [
+  { id: 0, src: require("./DSC_0119.jpg"), title: "" },
+  { id: 1, src: require("./DSC_0121.jpg"), title: "" },
+  { id: 2, src: require("./DSC_0136.jpg"), title: "" },
+  { id: 3, src: require("./DSC_0140.jpg"), title: "" },
+  { id: 4, src: require("./DSC_0142.jpg"), title: "" },
+  { id: 5, src: require("./DSC_0146.jpg"), title: "" },
+  { id: 6, src: require("./DSC_0152.jpg"), title: "" },
+  { id: 7, src: require("./DSC_0169.jpg"), title: "" },
+  { id: 8, src: require("./DSC_0184.jpg"), title: "" },
+  { id: 9, src: require("./DSC_0192.jpg"), title: "" },
+  { id: 10, src: require("./DSC_0200.jpg"), title: "" },
+  { id: 11, src: require("./DSC_0210.jpg"), title: "" },
+  { id: 12, src: require("./DSC_0216.jpg"), title: "" },
+  { id: 13, src: require("./DSC_0218.jpg"), title: "" },
+  { id: 14, src: require("./DSC_0220.jpg"), title: "" },
+  { id: 15, src: require("./DSC_0226.jpg"), title: "" },
+  { id: 16, src: require("./DSC_0234.jpg"), title: "" },
+];
+export default images;

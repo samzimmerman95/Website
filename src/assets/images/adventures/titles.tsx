@@ -51,6 +51,7 @@ const images: any = [
     src: require("./titles/DSC_9451.jpg"),
     title: "Kancamagus",
     date: "June 2020",
+    path: "/2020/kancamagus",
   },
   {
     src: require("./titles/DSC_9371.jpg"),
@@ -71,10 +72,34 @@ const images: any = [
     path: "/2019/mammoth",
   },
   {
-    src: require("./titles/DSC_6430.jpg"),
-    title: "Isle of Skye",
+    src: require("./titles/DSC_6374.jpg"),
+    title: "Isle of Skye - Fairy Glen",
     date: "May 2019",
-    path: "/2019/isleofskye",
+    path: "/2019/isleofskye/fairyglen",
+  },
+  {
+    src: require("./titles/DSC_6430.jpg"),
+    title: "Isle of Skye - Flodigarry",
+    date: "May 2019",
+    path: "/2019/isleofskye/flodigarry",
+  },
+  {
+    src: require("./titles/DSC_6156.jpg"),
+    title: "Isle of Skye - Quirang",
+    date: "May 2019",
+    path: "/2019/isleofskye/quirang",
+  },
+  {
+    src: require("./titles/DSC_6030.jpg"),
+    title: "Isle of Skye - Old Man of Storr",
+    date: "May 2019",
+    path: "/2019/isleofskye/storr",
+  },
+  {
+    src: require("./titles/DSC_5932.jpg"),
+    title: "Isle of Skye - Sligachan",
+    date: "May 2019",
+    path: "/2019/isleofskye/sligachan",
   },
   {
     src: require("./titles/DSC_5851.jpg"),
@@ -120,9 +145,9 @@ const images: any = [
   },
   {
     src: require("./titles/DSC_2741.jpg"),
-    title: "Chris Craft Boat Show",
+    title: "Lake Winnipesaukee Boat Show",
     date: "July 2018",
-    path: "/2018/chriscraft",
+    path: "/2018/boatshow",
   },
   {
     src: require("./titles/DSC_2655.jpg"),
@@ -162,7 +187,7 @@ const images: any = [
   },
   {
     src: require("./titles/DSC_2602.jpg"),
-    title: "St. Vincent & the Grenadines",
+    title: "St. Vincent & The Grenadines",
     date: "March 2016",
     path: "/2016/stvincent",
   },

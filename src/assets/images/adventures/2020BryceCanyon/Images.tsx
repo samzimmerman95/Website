@@ -1,0 +1,23 @@
+const images: any = [
+  { id: 0, src: require("./DSC_0007.jpg"), title: "" },
+  { id: 1, src: require("./DSC_0014.jpg"), title: "" },
+  { id: 2, src: require("./DSC_0020.jpg"), title: "" },
+  { id: 3, src: require("./DSC_9881.jpg"), title: "" },
+  { id: 4, src: require("./DSC_9887.jpg"), title: "" },
+  { id: 5, src: require("./DSC_9894.jpg"), title: "" },
+  { id: 6, src: require("./DSC_9902.jpg"), title: "" },
+  { id: 7, src: require("./DSC_9905.jpg"), title: "" },
+  { id: 8, src: require("./DSC_9906.jpg"), title: "" },
+  { id: 9, src: require("./DSC_9907.jpg"), title: "" },
+  { id: 10, src: require("./DSC_9911.jpg"), title: "" },
+  { id: 11, src: require("./DSC_9914.jpg"), title: "" },
+  { id: 12, src: require("./DSC_9919.jpg"), title: "" },
+  { id: 13, src: require("./DSC_9920.jpg"), title: "" },
+  { id: 14, src: require("./DSC_9925.jpg"), title: "" },
+  { id: 15, src: require("./DSC_9932.jpg"), title: "" },
+  { id: 16, src: require("./DSC_9960.jpg"), title: "" },
+  { id: 17, src: require("./DSC_9963.jpg"), title: "" },
+  { id: 18, src: require("./DSC_9990.jpg"), title: "" },
+  { id: 19, src: require("./DSC_9996.jpg"), title: "" },
+];
+export default images;
