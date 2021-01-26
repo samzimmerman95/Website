@@ -25,7 +25,7 @@ export default class P5Page extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid">
         <NavBar />
         <div className="d-flex justify-content-center" ref={this.myRef}></div>
         <Footer />
