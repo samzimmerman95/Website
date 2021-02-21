@@ -115,7 +115,7 @@ export function imageLTextR(image: Image, text: string) {
       <div className="col-md-8 px-md-1">
         <img src={image.src} className="img-fluid" alt={image.title}></img>
       </div>
-      <div className="col-md-4 px-md-1 text-dark d-flex align-items-center justify-content-center ">
+      <div className="col-md-4 px-md-1 text-dark d-flex align-items-center justify-content-center small font-weight-light text-center">
         {text}
       </div>
     </div>
@@ -125,7 +125,7 @@ export function imageLTextR(image: Image, text: string) {
 export function imageRTextL(image: Image, text: string) {
   return (
     <div className="row row-md-2 px-1 pb-2">
-      <div className="col-md-4 px-md-1 text-dark d-flex align-items-center justify-content-center ">
+      <div className="col-md-4 px-md-1 text-dark d-flex align-items-center justify-content-center small font-weight-light text-center">
         {text}
       </div>
       <div className="col-md-8 px-md-1">
@@ -170,7 +170,9 @@ export function threeCols(
 export function centeredText(text: string) {
   return (
     <div className="row px-2 pb-2">
-      <div className="col text-dark text-center ">{text}</div>
+      <div className="col text-dark text-center small font-weight-light">
+        {text}
+      </div>
     </div>
   );
 }
