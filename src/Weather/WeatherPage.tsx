@@ -48,16 +48,22 @@ export default class WeatherPage extends React.Component<{}, weatherState> {
 
   render() {
     return (
-      <div className="container-fluid">
-        <NavBar />
-
-        <div className="d-flex justify-content-center">
-          <Chart width={800} height={500} data={this.state.rawData} />
-        </div>
-        <div className="row row-cols-1 row-cols-md-3 mt-2">
-          <div className="col">Updated {this.state.timeSince} minutes ago</div>
-          <div className="col">Sensor 1: {this.state.latest.temps[0]}</div>
-          <div className="col">Sensor 2: {this.state.latest.temps[1]}</div>
+      <div className="container-fluid d-flex flex-column min-vh-100">
+        {" "}
+        {/*With div below, forces footer to the bottom when there is not enough content to fill the page.*/}
+        {/*Only here and p5 page since only those actually need it.*/}
+        <div className="flex-grow-1">
+          <NavBar />
+          <div className="d-flex justify-content-center">
+            <Chart width={800} height={500} data={this.state.rawData} />
+          </div>
+          <div className="row row-cols-1 row-cols-md-3 mt-2">
+            <div className="col">
+              Updated {this.state.timeSince} minutes ago
+            </div>
+            <div className="col">Sensor 1: {this.state.latest.temps[0]}</div>
+            <div className="col">Sensor 2: {this.state.latest.temps[1]}</div>
+          </div>
         </div>
         <Footer />
       </div>
