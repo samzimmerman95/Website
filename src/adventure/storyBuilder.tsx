@@ -50,14 +50,14 @@ export function fullScreen(image: Image) {
 export function twoCols(imageLeft: Image, imageRight: Image) {
   return (
     <div className="row row-md-2 px-1 pb-2">
-      <div className="col-md-6 px-md-1 d-flex align-items-center">
+      <div className="col-md-6 px-md-1 d-flex align-items-center justify-content-center">
         <img
           src={imageLeft.src}
           className="img-fluid"
           alt={imageLeft.title}
         ></img>
       </div>
-      <div className="col-md-6 px-md-1 d-flex align-items-center">
+      <div className="col-md-6 px-md-1 d-flex align-items-center justify-content-center">
         <img
           src={imageRight.src}
           className="img-fluid"
