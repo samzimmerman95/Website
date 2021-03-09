@@ -27,5 +27,6 @@ const images: any = [
   { id: 25, src: require("./DSC_4839.jpg"), title: "" },
   { id: 26, src: require("./DSC_4848.jpg"), title: "" },
   { id: 27, src: require("./DSC_4852.jpg"), title: "" },
+  { id: 28, src: require("./IMG_4262.jpg"), title: "" },
 ];
 export default images;

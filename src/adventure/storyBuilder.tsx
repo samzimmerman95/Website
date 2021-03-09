@@ -169,7 +169,7 @@ export function threeCols(
 
 export function centeredText(text: string) {
   return (
-    <div className="row px-2 pb-2">
+    <div className="row px-5 pb-2">
       <div className="col text-dark text-center small font-weight-light">
         {text}
       </div>
