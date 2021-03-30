@@ -11,7 +11,14 @@ export function title(image: Image, title: string, date: string) {
     <div className="row">
       <div className="col px-2 pb-2">
         <div className="relativeContainer">
-          <img src={image.src} className="img-fluid" alt={image.title}></img>
+          <img
+            src={image.src}
+            className="img-fluid"
+            alt={image.title}
+            style={{
+              width: "100%",
+            }}
+          ></img>
           <div className="adventureStoryTextBox d-flex flex-column align-items-center">
             <h3 className="text-white my-0">{title}</h3>
             <p className="text-white my-0">{date}</p>
