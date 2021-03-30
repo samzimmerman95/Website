@@ -28,12 +28,14 @@ function Chart({ width, height, data }: any) {
       scaleX.domain(newXScale.domain());
     }
     function xAxis(g: any) {
-      g.attr("transform", `translate(0,${height - margin.bottom})`).call(
-        d3
-          .axisBottom(scaleX)
-          .ticks(width / 80)
-          .tickSizeOuter(0)
-      );
+      g.attr("transform", `translate(0,${height - margin.bottom})`)
+        .style("font-size", "12px")
+        .call(
+          d3
+            .axisBottom(scaleX)
+            .ticks(width / 100)
+            .tickSizeOuter(0)
+        );
     }
     svg.select(".x-axis").call(xAxis);
 
@@ -44,8 +46,10 @@ function Chart({ width, height, data }: any) {
       .domain(tempRange as [number, number])
       .nice()
       .range([height - margin.bottom - 10, margin.top]);
+
     function yAxis(g: any) {
       g.attr("transform", `translate(${margin.left}, 0)`)
+        .style("font-size", "12px")
         .call(d3.axisLeft(scaleY))
         // .call((g: any) => g.select(".domain").remove())
         .call((g: any) =>
@@ -78,6 +82,25 @@ function Chart({ width, height, data }: any) {
       .attr("stroke-linejoin", "round")
       .attr("stroke-linecap", "round")
       .attr("d", lineGenerator);
+
+    // Second Line
+    let lineGenerator2 = d3
+      .line()
+      .x((d: any) => scaleX(d.date))
+      .y((d: any) => scaleY(parseFloat(d.temps[1])));
+
+    svg
+      .select(".graphContent2")
+      .selectAll(".myLine")
+      .data([data])
+      .join("path")
+      .attr("class", "myLine")
+      .attr("stroke", "red")
+      .attr("fill", "none")
+      .attr("stroke-width", 1.5)
+      .attr("stroke-linejoin", "round")
+      .attr("stroke-linecap", "round")
+      .attr("d", lineGenerator2);
 
     // Label and dot for last temp, Not using rn
     var lastTime: number;
@@ -124,13 +147,13 @@ function Chart({ width, height, data }: any) {
       .attr("x", width - 60)
       .attr("y", 25)
       .text("Sensor 1")
-      .style("font-size", "12px")
+      .style("font-size", "13px")
       .attr("alignment-baseline", "middle");
 
     // Zooming functionality
     var zoom: any = d3
       .zoom()
-      .scaleExtent([1, 100])
+      .scaleExtent([1, data.length / 5])
       .extent([
         [margin.left, 0],
         [width - margin.right, height],
@@ -141,6 +164,7 @@ function Chart({ width, height, data }: any) {
       ])
       .on("zoom", () => {
         const zoomState = zoomTransform(svg.node() as any);
+        // console.log("Zoom state: ", zoomState);
         setCurrentZoomState(zoomState as any);
       });
 
@@ -151,7 +175,16 @@ function Chart({ width, height, data }: any) {
 
   return (
     <div className="chart">
-      <svg ref={ref}>
+      <svg
+        ref={ref}
+        viewBox={`0 0 ${width} ${height}`}
+        style={{
+          height: "100%",
+          width: "100%",
+          marginRight: "0px",
+          marginLeft: "0px",
+        }}
+      >
         <defs>
           <clipPath id="myLineChart">
             <rect
@@ -163,6 +196,7 @@ function Chart({ width, height, data }: any) {
           </clipPath>
         </defs>
         <g className="graphContent" clipPath={`url(#myLineChart)`}></g>
+        {/* <g className="graphContent2" clipPath={`url(#myLineChart)`}></g> */}
         <g className="x-axis"></g>
         <g className="y-axis"></g>
       </svg>
