@@ -19,7 +19,7 @@ export default function NavBar() {
         <span className="navbar-toggler-icon"></span>
       </button>
       <div
-        className="collapse navbar-collapse justify-content-end"
+        className="collapse navbar-collapse justify-content-end pr-5"
         id="navbarNav"
       >
         <ul className="navbar-nav">
