@@ -7,6 +7,7 @@ import AdventuresPage from "./adventure/AdventuresPage";
 import FullView from "./FullView";
 import P5Page from "./P5Page";
 import WeatherPage from "./Weather/WeatherPage";
+import WeatherPageRF from "./Weather/WeatherPageRF";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
             <P5Page />
           </Route>
           <Route exact path="/weather">
-            <WeatherPage />
+            <WeatherPageRF />
           </Route>
         </Switch>
       </div>
