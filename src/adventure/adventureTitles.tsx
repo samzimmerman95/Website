@@ -12,7 +12,7 @@ type titleImage = {
 function adventureTitle(image: titleImage) {
   return (
     <div className="relativeContainer pb-2">
-      <img src={image.src} className="img-fluid" />
+      <img src={image.src} className="img-fluid" alt="" />
       <Link to={"/adventures" + image.path}>
         <div className="adventureTitleTextBox d-flex flex-column justify-content-center">
           <h4 className="text-white my-0">{image.title}</h4>

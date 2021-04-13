@@ -20,6 +20,7 @@ export default function HomePage() {
                 <img
                   src={require("./assets/images/feed/2019/DSC_4848.jpg")}
                   className="img-fluid"
+                  alt=""
                   style={{
                     objectFit: "cover",
                     objectPosition: "50% 50%",
@@ -32,6 +33,7 @@ export default function HomePage() {
                 <img
                   src={require("./assets/images/feed/2016/DSC_5799.jpg")}
                   className="img-fluid"
+                  alt=""
                   style={{
                     objectFit: "cover",
                     objectPosition: "50% 50%",
@@ -44,6 +46,7 @@ export default function HomePage() {
                 <img
                   src={require("./assets/images/adventures/2020Zion/DSC_0079.jpg")}
                   className="img-fluid"
+                  alt=""
                   style={{
                     objectFit: "cover",
                     objectPosition: "50% 50%",
@@ -56,6 +59,7 @@ export default function HomePage() {
                 <img
                   src={require("./assets/images/adventures/2019Quirang/DSC_6156.jpg")}
                   className="img-fluid"
+                  alt=""
                   style={{
                     objectFit: "cover",
                     objectPosition: "50% 40%",
@@ -68,6 +72,7 @@ export default function HomePage() {
                 <img
                   src={require("./assets/images/adventures/2019Flodigarry/DSC_6430.jpg")}
                   className="img-fluid"
+                  alt=""
                   style={{
                     objectFit: "cover",
                     objectPosition: "50% 60%",
@@ -80,6 +85,7 @@ export default function HomePage() {
                 <img
                   src={require("./assets/images/adventures/2019FairyGlen/DSC_6280.jpg")}
                   className="img-fluid"
+                  alt=""
                   style={{
                     objectFit: "cover",
                     objectPosition: "50% 60%",
@@ -92,6 +98,7 @@ export default function HomePage() {
                 <img
                   src={require("./assets/images/adventures/2020CrossCountry/DSC_9831.jpg")}
                   className="img-fluid"
+                  alt=""
                   style={{
                     objectFit: "cover",
                     objectPosition: "50% 40%",
@@ -111,6 +118,7 @@ export default function HomePage() {
             <img
               src={require("./assets/images/feed/2018/DSC_3108.jpg")}
               className="img-fluid"
+              alt=""
             />
             <Link to="/feed">
               <div className="centerTitle">
@@ -126,6 +134,7 @@ export default function HomePage() {
             <img
               src={require("./assets/images/feed/2019/DSC_5557.jpg")}
               className="img-fluid"
+              alt=""
             />
             <Link to="/adventures">
               <div className="centerTitle">
