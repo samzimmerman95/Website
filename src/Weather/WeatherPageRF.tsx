@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { ToggleButton, ToggleButtonGroup } from "react-bootstrap";
 import firebase from "../initFirebase";
 import Chart from "./Chart";
 import NavBar from "../NavBar";
@@ -28,12 +29,13 @@ export default function WeatherPageRF() {
   const [allData, setAllData] = useState<rawData[]>([]);
   const [lastWeekData, setLastWeekData] = useState<rawData[]>([]);
   const [lastDayData, setLastDayData] = useState<rawData[]>([]);
-  const [currentTimeSelected, setCurrentTimeSelected] = useState("Week");
+  const [currentTimeSelected, setCurrentTimeSelected] = useState("All");
   const [latest, setLatest] = useState<rawData>({
     date: 0,
     temps: [0, 0],
   });
   const [timeSince, setTimeSince] = useState<number>(0);
+  const [selectedLines, setSelectedLines] = useState([0]);
 
   useEffect(() => {
     getDataFromFirebase().then((result) => {
@@ -54,12 +56,66 @@ export default function WeatherPageRF() {
 
   function ChangeChart() {
     if (currentTimeSelected === "Day") {
-      return <Chart width={800} height={500} data={lastDayData} />;
+      return (
+        <Chart
+          width={1000}
+          height={500}
+          data={lastDayData}
+          selectedLines={selectedLines}
+        />
+      );
     } else if (currentTimeSelected === "Week") {
-      return <Chart width={800} height={500} data={lastWeekData} />;
+      return (
+        <Chart
+          width={1000}
+          height={500}
+          data={lastWeekData}
+          selectedLines={selectedLines}
+        />
+      );
     } else {
-      return <Chart width={800} height={500} data={allData} />;
+      return (
+        <Chart
+          width={1000}
+          height={500}
+          data={allData}
+          selectedLines={selectedLines}
+        />
+      );
     }
+  }
+  function ToggleButtonLinesGroup() {
+    // const [selectedLines, setSelectedLines] = useState([1]);
+    const handleChange = (val: number[]) => setSelectedLines(val);
+    console.log(selectedLines);
+    return (
+      <ToggleButtonGroup
+        type="checkbox"
+        size="sm"
+        // vertical={true}
+        value={selectedLines}
+        onChange={handleChange}
+      >
+        <ToggleButton variant="outline-secondary" value={0}>
+          Air
+        </ToggleButton>
+        <ToggleButton variant="outline-secondary" value={1}>
+          2ft
+        </ToggleButton>
+        <ToggleButton variant="outline-secondary" value={2}>
+          4ft
+        </ToggleButton>
+        <ToggleButton variant="outline-secondary" value={3}>
+          6ft
+        </ToggleButton>
+        <ToggleButton variant="outline-secondary" value={4}>
+          8ft
+        </ToggleButton>
+        <ToggleButton variant="outline-secondary" value={5}>
+          Avg
+        </ToggleButton>
+      </ToggleButtonGroup>
+    );
   }
 
   return (
@@ -69,30 +125,30 @@ export default function WeatherPageRF() {
       <div className="flex-grow-1">
         <NavBar />
         <div className="d-flex justify-content-center pb-2">
-          <button
-            className="btn btn-outline-secondary mx-1 btn-sm"
-            data-bs-toggle="button"
-            onClick={() => setCurrentTimeSelected("Day")}
+          <ToggleButtonGroup
+            type="radio"
+            name="options"
+            size="sm"
+            defaultValue={"All"}
+            // value={"All"}
+            onChange={setCurrentTimeSelected}
           >
-            24 Hours
-          </button>
-          <button
-            className="btn btn-outline-secondary mx-1 btn-sm" //active class
-            data-bs-toggle="button"
-            onClick={() => setCurrentTimeSelected("Week")}
-          >
-            Last Week
-          </button>
-          <button
-            className="btn btn-outline-secondary mx-1 btn-sm"
-            data-bs-toggle="button"
-            onClick={() => setCurrentTimeSelected("All")}
-          >
-            All Time
-          </button>
+            <ToggleButton variant="outline-secondary" value={"Day"}>
+              24 Hours
+            </ToggleButton>
+            <ToggleButton variant="outline-secondary" value={"Week"}>
+              Last Week
+            </ToggleButton>
+            <ToggleButton variant="outline-secondary" value={"All"}>
+              All Time
+            </ToggleButton>
+          </ToggleButtonGroup>
         </div>
         <div className="d-flex justify-content-center">
           <ChangeChart></ChangeChart>
+        </div>
+        <div className="d-flex justify-content-center pt-2">
+          <ToggleButtonLinesGroup />
         </div>
         <div className="row row-cols-1 row-cols-md-3 mt-2">
           <div className="col">Updated {timeSince} minutes ago</div>

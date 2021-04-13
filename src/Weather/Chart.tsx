@@ -4,7 +4,7 @@ import React, { useRef, useEffect, useState } from "react";
 
 const margin = { top: 20, right: 50, bottom: 30, left: 40 };
 
-function Chart({ width, height, data }: any) {
+function Chart({ width, height, data, selectedLines }: any) {
   const ref = useRef(null);
   const [currentZoomState, setCurrentZoomState] = useState();
 
@@ -64,91 +64,53 @@ function Chart({ width, height, data }: any) {
     }
     svg.select(".y-axis").call(yAxis);
 
-    // Line
-    let lineGenerator = d3
+    // Create a line generator for each line
+    let lineAirGenerator = d3
       .line()
       .x((d: any) => scaleX(d.date))
       .y((d: any) => scaleY(parseFloat(d.temps[0])));
-
-    svg
-      .select(".graphContent")
-      .selectAll(".myLine")
-      .data([data])
-      .join("path")
-      .attr("class", "myLine")
-      .attr("stroke", "steelblue")
-      .attr("fill", "none")
-      .attr("stroke-width", 1.5)
-      .attr("stroke-linejoin", "round")
-      .attr("stroke-linecap", "round")
-      .attr("d", lineGenerator);
-
-    // Second Line
-    let lineGenerator2 = d3
+    let line2ftGenerator = d3
       .line()
       .x((d: any) => scaleX(d.date))
       .y((d: any) => scaleY(parseFloat(d.temps[1])));
 
-    svg
-      .select(".graphContent2")
-      .selectAll(".myLine")
-      .data([data])
-      .join("path")
-      .attr("class", "myLine")
-      .attr("stroke", "red")
-      .attr("fill", "none")
-      .attr("stroke-width", 1.5)
-      .attr("stroke-linejoin", "round")
-      .attr("stroke-linecap", "round")
-      .attr("d", lineGenerator2);
+    // Draw Lines and Legends according to the lines that we have selected
+    let colors: string[] = ["steelblue", "red"];
+    let labels: string[] = ["Air", "2ft", "4ft", "6ft", "8ft", "Avg"];
+    let lineGens: any[] = [lineAirGenerator, line2ftGenerator];
+    let verticalOffset = 20;
+    selectedLines.forEach((line: number) => {
+      svg
+        .select(".graphContent" + labels[line])
+        .selectAll(".myLine")
+        .data([data])
+        .join("path")
+        .attr("class", "myLine")
+        .attr("stroke", colors[line])
+        .attr("fill", "none")
+        .attr("stroke-width", 1.5)
+        .attr("stroke-linejoin", "round")
+        .attr("stroke-linecap", "round")
+        .attr("d", lineGens[line]);
 
-    // Label and dot for last temp, Not using rn
-    var lastTime: number;
-    var lastTemp: number;
-    if (data) {
-      try {
-        let index = data.length - 1;
-        lastTime = data[index].date;
-        lastTemp = parseFloat(data[index].temps[0]);
-      } catch (error) {}
-    }
-    function lineLabel(g: any) {
-      g.attr(
-        "transform",
-        "translate(" + (width - margin.left) + "," + scaleY(lastTemp) + ")"
-      )
-        .attr("dy", ".35em")
-        .attr("text-anchor", "start")
-        .style("fill", "steelblue")
-        .text(lastTemp);
-    }
-    function endCircle(g: any) {
-      if (scaleY(lastTemp)) {
-        g.attr("fill", "steelblue")
-          .attr(
-            "transform",
-            "translate(" + scaleX(lastTime) + "," + scaleY(lastTemp) + ")"
-          )
-          .attr("r", 3);
-      }
-    }
-    // svg.append("text").call(lineLabel);
-    // svg.append("circle").call(endCircle);
-    svg
-      .append("rect")
-      .attr("x", width - 80)
-      .attr("y", 20)
-      .attr("width", 10)
-      .attr("height", 10)
-      .style("fill", "steelblue");
+      svg
+        .append("rect")
+        .attr("x", width - 60)
+        .attr("y", verticalOffset)
+        .attr("width", 10)
+        .attr("height", 10)
+        .style("fill", colors[line]);
 
-    svg
-      .append("text")
-      .attr("x", width - 60)
-      .attr("y", 25)
-      .text("Sensor 1")
-      .style("font-size", "13px")
-      .attr("alignment-baseline", "middle");
+      svg
+        .append("text")
+        .attr("x", width - 40)
+        .attr("y", verticalOffset + 5)
+        .text(labels[line])
+        .style("font-size", "13px")
+        .attr("alignment-baseline", "middle");
+
+      verticalOffset += 15;
+    });
 
     // Zooming functionality
     var zoom: any = d3
@@ -171,7 +133,7 @@ function Chart({ width, height, data }: any) {
     svg.call(zoom);
 
     // If either of these change, useEffect is called again
-  }, [currentZoomState, data]);
+  }, [currentZoomState, data, height, width, selectedLines]);
 
   return (
     <div className="chart">
@@ -195,8 +157,8 @@ function Chart({ width, height, data }: any) {
             />
           </clipPath>
         </defs>
-        <g className="graphContent" clipPath={`url(#myLineChart)`}></g>
-        {/* <g className="graphContent2" clipPath={`url(#myLineChart)`}></g> */}
+        <g className="graphContentAir" clipPath={`url(#myLineChart)`}></g>
+        <g className="graphContent2ft" clipPath={`url(#myLineChart)`}></g>
         <g className="x-axis"></g>
         <g className="y-axis"></g>
       </svg>
