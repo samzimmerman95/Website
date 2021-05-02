@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap";
 import firebase from "../initFirebase";
 import Chart from "./Chart";
+import CurrentTempChart from "./CurrentTempChart";
+import ChangeTempChart from "./ChangeTempChart";
 import NavBar from "../NavBar";
 import Footer from "../Footer";
 
@@ -30,10 +32,7 @@ export default function WeatherPageRF() {
   const [lastWeekData, setLastWeekData] = useState<rawData[]>([]);
   const [lastDayData, setLastDayData] = useState<rawData[]>([]);
   const [currentTimeSelected, setCurrentTimeSelected] = useState("All");
-  const [latest, setLatest] = useState<rawData>({
-    date: 0,
-    temps: [0, 0],
-  });
+  const [latest, setLatest] = useState<rawData>({ date: 0, temps: [] });
   const [timeSince, setTimeSince] = useState<number>(0);
   const [selectedLines, setSelectedLines] = useState([0]);
 
@@ -124,6 +123,22 @@ export default function WeatherPageRF() {
       {/*Only here and p5 page since only those actually need it.*/}
       <div className="flex-grow-1">
         <NavBar />
+        <div className="row justify-content-md-center pb-2">
+          <div className="col-md d-flex justify-content-center pb-2 pl-md-5">
+            <CurrentTempChart
+              width={350}
+              height={220}
+              data={latest}
+            ></CurrentTempChart>
+          </div>
+          <div className="col-md d-flex justify-content-center pr-md-5">
+            <ChangeTempChart
+              width={350}
+              height={220}
+              data={lastWeekData}
+            ></ChangeTempChart>
+          </div>
+        </div>
         <div className="d-flex justify-content-center pb-2">
           <ToggleButtonGroup
             type="radio"
@@ -152,8 +167,6 @@ export default function WeatherPageRF() {
         </div>
         <div className="row row-cols-1 row-cols-md-3 mt-2">
           <div className="col">Updated {timeSince} minutes ago</div>
-          <div className="col">Sensor 1: {latest.temps[0]}</div>
-          <div className="col">Sensor 2: {latest.temps[1]}</div>
         </div>
       </div>
       <Footer />

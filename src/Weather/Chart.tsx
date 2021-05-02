@@ -40,7 +40,7 @@ function Chart({ width, height, data, selectedLines }: any) {
     svg.select(".x-axis").call(xAxis);
 
     // Y Axis
-    var tempRange = d3.extent(data, (d: any) => parseFloat(d.temps[0]));
+    var tempRange = d3.extent(data, (d: any) => parseFloat(d.temps[0])); //Look at other temps at time in list?
     var scaleY = d3
       .scaleLinear()
       .domain(tempRange as [number, number])
@@ -79,7 +79,7 @@ function Chart({ width, height, data, selectedLines }: any) {
     let labels: string[] = ["Air", "2ft", "4ft", "6ft", "8ft", "Avg"];
     let lineGens: any[] = [lineAirGenerator, line2ftGenerator];
     let verticalOffset = 20;
-    selectedLines.forEach((line: number) => {
+    selectedLines.sort().forEach((line: number) => {
       svg
         .select(".graphContent" + labels[line])
         .selectAll(".myLine")
