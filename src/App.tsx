@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import HomePage from "./HomePage";
 import FeedPage from "./feed/FeedPage";
@@ -11,7 +11,8 @@ import WeatherPageRF from "./Weather/WeatherPageRF";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter basename="/">
+      {/* <BrowserRouter basename="/"> */}
       <div>
         <Switch>
           <Route exact path="/">
@@ -33,7 +34,8 @@ function App() {
           </Route>
         </Switch>
       </div>
-    </BrowserRouter>
+      {/* </BrowserRouter> */}
+    </HashRouter>
   );
 }
 
