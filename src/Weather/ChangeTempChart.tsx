@@ -20,7 +20,7 @@ export default function ChangeTempChart({ width, height, data }: any) {
       .scaleLinear()
       //   .domain(tempRange as [number, number])
       //   .nice()
-      .domain([50, 100])
+      .domain([50, 80])
       .range([margin.left, width - margin.right]);
 
     function xAxis(g: any) {
@@ -59,7 +59,9 @@ export default function ChangeTempChart({ width, height, data }: any) {
       data.forEach((entry: any) => {
         tempsPerSensor[0].push(parseFloat(entry.temps[0]));
         tempsPerSensor[1].push(parseFloat(entry.temps[1]));
-        // .. remainng for other sensors
+        tempsPerSensor[2].push(parseFloat(entry.temps[2]));
+        tempsPerSensor[3].push(parseFloat(entry.temps[3]));
+        tempsPerSensor[4].push(parseFloat(entry.temps[4]));
       });
       tempsPerSensor.forEach((entry: any, i: number) => {
         if (entry.length) {
@@ -69,15 +71,16 @@ export default function ChangeTempChart({ width, height, data }: any) {
             entry.reduce((a: number, b: number) => a + b) / entry.length;
           average = Math.round(average * 10) / 10;
           statsPerSensor[i] = [min, max, average];
+          // console.log(statsPerSensor[i]);
         }
       });
 
       let labeledData = [
         { label: "Air", temps: statsPerSensor[0] },
         { label: "2ft", temps: statsPerSensor[1] },
-        { label: "4ft", temps: [60, 80, 68.4] },
-        { label: "6ft", temps: [55, 84, 65.4] },
-        { label: "8ft", temps: [60, 64, 63.4] },
+        { label: "4ft", temps: statsPerSensor[2] },
+        { label: "6ft", temps: statsPerSensor[3] },
+        { label: "8ft", temps: statsPerSensor[4] },
       ];
 
       // Bars
@@ -204,6 +207,9 @@ export default function ChangeTempChart({ width, height, data }: any) {
       >
         <g className="graphContentAir" clipPath={`url(#myLineChart)`}></g>
         <g className="graphContent2ft" clipPath={`url(#myLineChart)`}></g>
+        <g className="graphContent4ft" clipPath={`url(#myLineChart)`}></g>
+        <g className="graphContent6ft" clipPath={`url(#myLineChart)`}></g>
+        <g className="graphContent8ft" clipPath={`url(#myLineChart)`}></g>
         <g className="x-axis"></g>
         <g className="y-axis"></g>
         <g className="toolContainer"></g>

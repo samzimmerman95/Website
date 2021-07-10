@@ -59,9 +59,9 @@ export default function CurrentTempChart({ width, height, data }: any) {
       let labeledData = [
         { label: "Air", temp: parseFloat(data.temps[0]) },
         { label: "2ft", temp: parseFloat(data.temps[1]) },
-        { label: "4ft", temp: 55.23 },
-        { label: "6ft", temp: 80.5 },
-        { label: "8ft", temp: 63.2 },
+        { label: "4ft", temp: parseFloat(data.temps[2]) },
+        { label: "6ft", temp: parseFloat(data.temps[3]) },
+        { label: "8ft", temp: parseFloat(data.temps[4]) },
       ];
 
       // Bars

@@ -40,7 +40,12 @@ function Chart({ width, height, data, selectedLines }: any) {
     svg.select(".x-axis").call(xAxis);
 
     // Y Axis
-    var tempRange = d3.extent(data, (d: any) => parseFloat(d.temps[0])); //Look at other temps at time in list?
+    var justTemps: number[] = [];
+    data.forEach((element: any) => {
+      justTemps.push(Math.min(...element.temps), Math.max(...element.temps));
+    });
+    var tempRange = d3.extent(justTemps, (d: any) => parseFloat(d));
+    // var tempRange = d3.extent(data, (d: any) => parseFloat(d.temps[1])); //Look at other temps at time in list?
     var scaleY = d3
       .scaleLinear()
       .domain(tempRange as [number, number])
@@ -73,11 +78,29 @@ function Chart({ width, height, data, selectedLines }: any) {
       .line()
       .x((d: any) => scaleX(d.date))
       .y((d: any) => scaleY(parseFloat(d.temps[1])));
+    let line4ftGenerator = d3
+      .line()
+      .x((d: any) => scaleX(d.date))
+      .y((d: any) => scaleY(parseFloat(d.temps[2])));
+    let line6ftGenerator = d3
+      .line()
+      .x((d: any) => scaleX(d.date))
+      .y((d: any) => scaleY(parseFloat(d.temps[3])));
+    let line8ftGenerator = d3
+      .line()
+      .x((d: any) => scaleX(d.date))
+      .y((d: any) => scaleY(parseFloat(d.temps[4])));
 
     // Draw Lines and Legends according to the lines that we have selected
-    let colors: string[] = ["steelblue", "red"];
+    let colors: string[] = ["steelblue", "red", "green", "purple", "orange"];
     let labels: string[] = ["Air", "2ft", "4ft", "6ft", "8ft", "Avg"];
-    let lineGens: any[] = [lineAirGenerator, line2ftGenerator];
+    let lineGens: any[] = [
+      lineAirGenerator,
+      line2ftGenerator,
+      line4ftGenerator,
+      line6ftGenerator,
+      line8ftGenerator,
+    ];
     let verticalOffset = 20;
     selectedLines.sort().forEach((line: number) => {
       svg
@@ -159,6 +182,10 @@ function Chart({ width, height, data, selectedLines }: any) {
         </defs>
         <g className="graphContentAir" clipPath={`url(#myLineChart)`}></g>
         <g className="graphContent2ft" clipPath={`url(#myLineChart)`}></g>
+        <g className="graphContent4ft" clipPath={`url(#myLineChart)`}></g>
+        <g className="graphContent6ft" clipPath={`url(#myLineChart)`}></g>
+        <g className="graphContent8ft" clipPath={`url(#myLineChart)`}></g>
+
         <g className="x-axis"></g>
         <g className="y-axis"></g>
       </svg>
