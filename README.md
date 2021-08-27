@@ -1,5 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Deploy
+
+1. Make, commit and push changes to main branch.
+2. Run `npm run deploy` to create build in the gh-pges branch
+
 ## Available Scripts
 
 In the project directory, you can run:

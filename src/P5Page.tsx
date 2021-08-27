@@ -64,7 +64,7 @@ export default class P5Page extends Component {
         let boidsInRadius = 0;
         for (let other of boids) {
           let d = p.dist(this.pos.x, this.pos.y, other.pos.x, other.pos.y);
-          if (other != this && d < perceptionRadius) {
+          if (other !== this && d < perceptionRadius) {
             steeringAlign.add(other.vel);
             steeringCohesion.add(other.pos);
             let diff = p5.Vector.sub(this.pos, other.pos);

@@ -40,12 +40,12 @@ function Chart({ width, height, data, selectedLines }: any) {
     svg.select(".x-axis").call(xAxis);
 
     // Y Axis
+    // Look at all temperatures to determine inclusive range
     var justTemps: number[] = [];
     data.forEach((element: any) => {
       justTemps.push(Math.min(...element.temps), Math.max(...element.temps));
     });
     var tempRange = d3.extent(justTemps, (d: any) => parseFloat(d));
-    // var tempRange = d3.extent(data, (d: any) => parseFloat(d.temps[1])); //Look at other temps at time in list?
     var scaleY = d3
       .scaleLinear()
       .domain(tempRange as [number, number])
