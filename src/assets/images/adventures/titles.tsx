@@ -1,5 +1,23 @@
 const images: any = [
   {
+    src: require("./titles/DSC_1819.jpg"),
+    title: "Kauai",
+    date: "August 2021",
+    path: "/2021/hawaii",
+  },
+  {
+    src: require("./titles/DSC_1484.jpg"),
+    title: "Silver Lake",
+    date: "June 2021",
+    path: "/2021/silverlake",
+  },
+  {
+    src: require("./titles/DSC_1409.jpg"),
+    title: "Mammoth Lakes",
+    date: "May 2021",
+    path: "/2021/mammothlakes",
+  },
+  {
     src: require("./titles/DSC_0801.jpg"),
     title: "Mammoth",
     date: "November 2020",

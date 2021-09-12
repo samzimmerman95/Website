@@ -36,6 +36,9 @@ import MtWashington from "./stories/2020MtWashington";
 import SunsetCliffs from "./stories/2020SunsetCliffs";
 import TorreyPines from "./stories/2020TorreyPines";
 import Zion from "./stories/2020Zion";
+import MammothLakes2021 from "./stories/2021MammothLakes";
+import Hawaii from "./stories/2021Hawaii";
+import SilverLake from "./stories/2021SilverLake";
 
 export default function AdventuresPage() {
   let { path } = useRouteMatch();
@@ -141,6 +144,15 @@ export default function AdventuresPage() {
         </Route>
         <Route path={`${path}/2020/mammoth`}>
           <Mammoth2 />
+        </Route>
+        <Route path={`${path}/2021/mammothlakes`}>
+          <MammothLakes2021 />
+        </Route>
+        <Route path={`${path}/2021/hawaii`}>
+          <Hawaii />
+        </Route>
+        <Route path={`${path}/2021/silverlake`}>
+          <SilverLake />
         </Route>
       </Switch>
       <Footer />

@@ -7,14 +7,17 @@ import Images2017 from "../assets/images/feed/Images2017";
 import Images2018 from "../assets/images/feed/Images2018";
 import Images2019 from "../assets/images/feed/Images2019";
 import Images2020 from "../assets/images/feed/Images2020";
+import Images2021 from "../assets/images/feed/Images2021";
 
 export default function FeedPage() {
   return (
     <div className="container-fluid">
       <NavBar />
+      <h3 className="text-center text-muted">2021</h3>
+      {threeCols(Images2021, 0, 49, 2021)}
+
       <h3 className="text-center text-muted">2020</h3>
       {threeCols(Images2020, 0, 109, 2020)}
-      {console.log("Length: ", Images2020.length)}
 
       <h3 className="text-center text-muted">2019</h3>
       {threeCols(Images2019, 0, 150, 2019)}

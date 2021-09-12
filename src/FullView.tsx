@@ -5,6 +5,7 @@ import Images2017 from "./assets/images/feed/Images2017";
 import Images2018 from "./assets/images/feed/Images2018";
 import Images2019 from "./assets/images/feed/Images2019";
 import Images2020 from "./assets/images/feed/Images2020";
+import Images2021 from "./assets/images/feed/Images2021";
 
 type ImageState = {
   index: number;
@@ -49,6 +50,9 @@ export default class FullView extends Component<
       case 2020:
         this.setState({ currentYearList: Images2020 });
         break;
+      case 2021:
+        this.setState({ currentYearList: Images2021 });
+        break;
     }
   }
   componentWillUnmount() {
@@ -57,6 +61,11 @@ export default class FullView extends Component<
 
   handleRight() {
     switch (this.state.index) {
+      case Images2021.length - 1:
+        if (this.state.year === 2021) {
+          this.setState({ index: 0, year: 2020, currentYearList: Images2019 });
+        }
+        break;
       case Images2020.length - 1:
         if (this.state.year === 2020) {
           this.setState({ index: 0, year: 2019, currentYearList: Images2019 });
@@ -87,7 +96,14 @@ export default class FullView extends Component<
   handleLeft() {
     if (this.state.index === 0) {
       switch (this.state.year) {
+        case 2021:
+          break;
         case 2020:
+          this.setState({
+            index: Images2021.length - 1,
+            year: 2021,
+            currentYearList: Images2021,
+          });
           break;
         case 2019:
           this.setState({

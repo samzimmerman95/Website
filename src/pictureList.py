@@ -1,10 +1,10 @@
 import os
-import json
 import time
 
 
 def feed(year):
     path = "/Users/samzimmerman/Documents/Apps/Website/src/assets/images/feed/"
+    os.system('rm ' + path + year + '.DS_Store')
     #year = "2016/"
     l = os.listdir(path+year)
 
@@ -23,25 +23,21 @@ def feed(year):
 
     index = 0
     colHeight = [0, 0, 0]
-    jsonList = []
-    for i in range(len(l)):
-        col = colHeight.index(min(colHeight))
-        x = {"id": i, "src": "require('./" + year +
-             l[i][0] + "')", "col": col+1, "title": ""}
 
-        jsonList.append(x)
-        scaleFactor = l[i][3] / 374
-        colHeight[col] += l[i][2] / scaleFactor
+    with open("/Users/samzimmerman/Documents/Apps/Website/src/assets/images/feed/list.tsx", "a") as file:
+        file.write("const images: any = [\n")
 
-    print(colHeight)
+        for i in range(len(l)):
+            col = colHeight.index(min(colHeight))+1
+            file.write(
+                "{ id: " + f"{i}, src: require('./{year}{l[i][0]}'), col: {col}, title: \"\"" + "},\n")
+            col -= 1
+            scaleFactor = l[i][3] / 374
+            colHeight[col] += l[i][2] / scaleFactor
 
-    file = open(
-        "/Users/samzimmerman/Documents/Apps/Website/src/assets/images/feed/list.tsx", "a")
-    file.write("const images: any =\n")
-    file.write(json.dumps(jsonList))
-    file.write("\n")
-    file.write("export default images;")
-    file.close()
+        file.write("];\nexport default images;")
+
+    print([int(x) for x in colHeight])
 
 
 def adventureStory(imgFolder):
@@ -51,19 +47,12 @@ def adventureStory(imgFolder):
     l.sort()
 
     index = 0
-    jsonList = []
-    for i in range(len(l)):
-        x = {"id": i, "src": "require('./" +
-             l[i] + "')", "title": ""}
-        jsonList.append(x)
-
-    # Write Images.tsx file to folder which holds all images for story
-    file = open(path + imgFolder + "Images.tsx", "a")
-    file.write("const images: any =\n")
-    file.write(json.dumps(jsonList))
-    file.write("\n")
-    file.write("export default images;")
-    file.close()
+    with open(path + imgFolder + "Images.tsx", "a") as file:
+        file.write("const images: any = [\n")
+        for i in range(len(l)):
+            file.write(
+                "{ id: " + f"{i}, src: require('./{l[i]}'), title: \"\"" + "},\n")
+        file.write("];\nexport default images;")
 
     # Writes template .tsx file for the story in stories folder
     file = open("/Users/samzimmerman/Documents/Apps/Website/src/adventure/stories/" +
@@ -80,5 +69,5 @@ def adventureStory(imgFolder):
     # Then must write import in AdventuresPage, and write in Route location
 
 
-# feed("2020/")
-adventureStory("2020Zion/")
+# feed("2021/")
+adventureStory("2021SilverLake/")
