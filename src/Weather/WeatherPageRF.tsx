@@ -29,9 +29,10 @@ async function getDataFromFirebase() {
 
 export default function WeatherPageRF() {
   const [allData, setAllData] = useState<rawData[]>([]);
+  const [lastMonthData, setLastMonthData] = useState<rawData[]>([]);
   const [lastWeekData, setLastWeekData] = useState<rawData[]>([]);
   const [lastDayData, setLastDayData] = useState<rawData[]>([]);
-  const [currentTimeSelected, setCurrentTimeSelected] = useState("All");
+  const [currentTimeSelected, setCurrentTimeSelected] = useState("Month");
   const [latest, setLatest] = useState<rawData>({ date: 0, temps: [] });
   const [timeSince, setTimeSince] = useState<number>(0);
   const [selectedLines, setSelectedLines] = useState([0]);
@@ -39,10 +40,14 @@ export default function WeatherPageRF() {
   useEffect(() => {
     getDataFromFirebase().then((result) => {
       setAllData(result);
-      let lastWeekTime = Date.now() - 604800000;
-      let lastDayTime = Date.now() - 86400000;
+      let oneDayMilliseconds = 86400000;
+      let lastMonthTime = Date.now() - oneDayMilliseconds * 30;
+      let lastWeekTime = Date.now() - oneDayMilliseconds * 7;
+      let lastDayTime = Date.now() - oneDayMilliseconds;
+      let lastMonth = result.filter((entry) => entry.date > lastMonthTime);
       let lastWeek = result.filter((entry) => entry.date > lastWeekTime);
       let lastDay = lastWeek.filter((entry) => entry.date > lastDayTime);
+      setLastMonthData(lastMonth);
       setLastWeekData(lastWeek);
       setLastDayData(lastDay);
       let lastEntry = result[result.length - 1];
@@ -69,6 +74,15 @@ export default function WeatherPageRF() {
           width={1000}
           height={500}
           data={lastWeekData}
+          selectedLines={selectedLines}
+        />
+      );
+    } else if (currentTimeSelected === "Month") {
+      return (
+        <Chart
+          width={1000}
+          height={500}
+          data={lastMonthData}
           selectedLines={selectedLines}
         />
       );
@@ -144,7 +158,7 @@ export default function WeatherPageRF() {
             type="radio"
             name="options"
             size="sm"
-            defaultValue={"All"}
+            defaultValue={currentTimeSelected}
             // value={"All"}
             onChange={setCurrentTimeSelected}
           >
@@ -153,6 +167,9 @@ export default function WeatherPageRF() {
             </ToggleButton>
             <ToggleButton variant="outline-secondary" value={"Week"}>
               Last Week
+            </ToggleButton>
+            <ToggleButton variant="outline-secondary" value={"Month"}>
+              Last Month
             </ToggleButton>
             <ToggleButton variant="outline-secondary" value={"All"}>
               All Time
