@@ -78,9 +78,9 @@ export default function ChangeTempChart({ width, height, data }: any) {
       let labeledData = [
         { label: "Air", temps: statsPerSensor[0] },
         { label: "2ft", temps: statsPerSensor[1] },
-        { label: "4ft", temps: [66, 76, 70] },
-        { label: "6ft", temps: [70.55, 78.13, 72.77] },
-        { label: "8ft", temps: [69.34, 74, 71.4] },
+        { label: "4ft", temps: statsPerSensor[2] },
+        { label: "6ft", temps: statsPerSensor[3] },
+        { label: "8ft", temps: statsPerSensor[4] },
       ];
 
       // Bars
