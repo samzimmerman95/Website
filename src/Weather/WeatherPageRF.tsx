@@ -13,7 +13,7 @@ interface rawData {
 }
 
 async function getDataFromFirebase() {
-  var tempsRef = firebase.database().ref("/lake-test/");
+  var tempsRef = firebase.database().ref("/lake/");
   var newList: rawData[] = [];
   await tempsRef.once("value").then((snapshot) => {
     let list = Object.entries(snapshot.val());
