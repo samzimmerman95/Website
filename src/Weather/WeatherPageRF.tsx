@@ -12,21 +12,6 @@ interface rawData {
   temps: any;
 }
 
-async function getDataFromFirebase() {
-  var tempsRef = firebase.database().ref("/test/");
-  var newList: rawData[] = [];
-  await tempsRef.once("value").then((snapshot) => {
-    let list = Object.entries(snapshot.val());
-    newList = list.map(([key, value]) => {
-      return {
-        date: parseInt(key + "000"),
-        temps: value,
-      };
-    });
-  });
-  return newList;
-}
-
 export default function WeatherPageRF() {
   const [allData, setAllData] = useState<rawData[]>([]);
   const [lastMonthData, setLastMonthData] = useState<rawData[]>([]);
@@ -38,7 +23,16 @@ export default function WeatherPageRF() {
   const [selectedLines, setSelectedLines] = useState([0]);
 
   useEffect(() => {
-    getDataFromFirebase().then((result) => {
+    var tempsRef = firebase.database().ref("/test2/");
+    var result: rawData[] = [];
+    tempsRef.on("value", (snapshot) => {
+      result = Object.entries(snapshot.val()).map(([key, value]) => {
+        return {
+          date: parseInt(key),
+          temps: value,
+        };
+      });
+      console.log("Length Data:", result.length);
       setAllData(result);
       let oneDayMilliseconds = 86400000;
       let lastMonthTime = Date.now() - oneDayMilliseconds * 30;
@@ -50,11 +44,13 @@ export default function WeatherPageRF() {
       setLastMonthData(lastMonth);
       setLastWeekData(lastWeek);
       setLastDayData(lastDay);
-      let lastEntry = result[result.length - 1];
-      setLatest(lastEntry);
-      let lastTime = new Date(lastEntry.date);
-      let difference = Math.trunc((Date.now() - lastTime.getTime()) / 60000);
-      setTimeSince(difference);
+      if (result.length > 0) {
+        let lastEntry = result[result.length - 1];
+        setLatest(lastEntry);
+        let lastTime = new Date(lastEntry.date);
+        let difference = Math.trunc((Date.now() - lastTime.getTime()) / 60000);
+        setTimeSince(difference);
+      }
     });
   }, []);
 
@@ -100,7 +96,7 @@ export default function WeatherPageRF() {
   function ToggleButtonLinesGroup() {
     // const [selectedLines, setSelectedLines] = useState([1]);
     const handleChange = (val: number[]) => setSelectedLines(val);
-    console.log(selectedLines);
+    // console.log(selectedLines);
     return (
       <ToggleButtonGroup
         type="checkbox"
