@@ -54,6 +54,17 @@ export default function WeatherPageRF() {
     });
   }, []);
 
+  // Every minute calculate new timeSince and update
+  useEffect(() => {
+    const interval = setInterval(() => {
+      let lastTime = new Date(latest.date);
+      let difference = Math.trunc((Date.now() - lastTime.getTime()) / 60000);
+      setTimeSince(difference);
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, [latest]);
+
   function ChangeChart() {
     if (currentTimeSelected === "Day") {
       return (
