@@ -23,7 +23,7 @@ export default function WeatherPageRF() {
   const [selectedLines, setSelectedLines] = useState([0]);
 
   useEffect(() => {
-    var tempsRef = firebase.database().ref("/test2/");
+    var tempsRef = firebase.database().ref("/lake23/");
     var result: rawData[] = [];
     tempsRef.on("value", (snapshot) => {
       result = Object.entries(snapshot.val()).map(([key, value]) => {

@@ -6,7 +6,6 @@ import FeedPage from "./feed/FeedPage";
 import AdventuresPage from "./adventure/AdventuresPage";
 import FullView from "./FullView";
 import P5Page from "./P5Page";
-// import WeatherPage from "./Weather/WeatherPage";
 import WeatherPageRF from "./Weather/WeatherPageRF";
 
 function App() {
