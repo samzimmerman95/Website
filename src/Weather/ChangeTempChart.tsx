@@ -20,7 +20,7 @@ export default function ChangeTempChart({ width, height, data }: any) {
       .scaleLinear()
       //   .domain(tempRange as [number, number])
       //   .nice()
-      .domain([60, 90])
+      .domain([40, 90])
       .range([margin.left, width - margin.right]);
 
     function xAxis(g: any) {

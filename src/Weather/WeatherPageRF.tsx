@@ -20,16 +20,25 @@ export default function WeatherPageRF() {
   const [currentTimeSelected, setCurrentTimeSelected] = useState("Month");
   const [latest, setLatest] = useState<rawData>({ date: 0, temps: [] });
   const [timeSince, setTimeSince] = useState<number>(0);
-  const [selectedLines, setSelectedLines] = useState([0]);
+  const [selectedLines, setSelectedLines] = useState([0, 1, 2, 3, 4]);
+
+  const offset: number[] = [-0.51, 0.83, 0.04, 0.24, -0.59];
+  const reorder: number[] = [4, 2, 0, 3, 1];
 
   useEffect(() => {
     var tempsRef = firebase.database().ref("/lake23/");
     var result: rawData[] = [];
     tempsRef.on("value", (snapshot) => {
-      result = Object.entries(snapshot.val()).map(([key, value]) => {
+      result = Object.entries(snapshot.val()).map(([key, value]: any) => {
+        var reordered: any = [0, 0, 0, 0, 0];
+        value.forEach((element: any, index: number) => {
+          element += offset[index];
+          reordered[reorder[index]] = element.toFixed(2);
+        });
+
         return {
           date: parseInt(key),
-          temps: value,
+          temps: reordered,
         };
       });
       console.log("Length Data:", result.length);
