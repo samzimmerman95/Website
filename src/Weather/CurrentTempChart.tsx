@@ -111,6 +111,11 @@ export default function CurrentTempChart({ width, height, data }: any) {
             .attr("dx", +4)
             .attr("fill", "black")
             .attr("text-anchor", "start")
+        )
+        .call((text) =>
+          text
+            .filter((d) => scaleX(d.temp) < margin.left) // For bars that go off the scale. Set text to left edge
+            .attr("x", margin.left)
         );
     } // End If
 
