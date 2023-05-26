@@ -40,10 +40,17 @@ function Chart({ width, height, data, selectedLines }: any) {
     svg.select(".x-axis").call(xAxis);
 
     // Y Axis
-    // Look at all temperatures to determine inclusive range
+    // Look at all temperatures to determine inclusive range in the lines that are current selected. Allows
     var justTemps: number[] = [];
     data.forEach((element: any) => {
-      justTemps.push(Math.min(...element.temps), Math.max(...element.temps));
+      var onlySelectedTemps: number[] = [];
+      selectedLines.forEach((lineIndex: number) =>
+        onlySelectedTemps.push(element.temps[lineIndex])
+      );
+      justTemps.push(
+        Math.min(...onlySelectedTemps),
+        Math.max(...onlySelectedTemps)
+      );
     });
     var tempRange = d3.extent(justTemps, (d: any) => parseFloat(d));
     var scaleY = d3
