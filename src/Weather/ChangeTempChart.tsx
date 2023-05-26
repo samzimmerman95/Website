@@ -205,11 +205,6 @@ export default function ChangeTempChart({ width, height, data }: any) {
           marginLeft: "0px",
         }}
       >
-        <g className="graphContentAir" clipPath={`url(#myLineChart)`}></g>
-        <g className="graphContent2ft" clipPath={`url(#myLineChart)`}></g>
-        <g className="graphContent4ft" clipPath={`url(#myLineChart)`}></g>
-        <g className="graphContent6ft" clipPath={`url(#myLineChart)`}></g>
-        <g className="graphContent8ft" clipPath={`url(#myLineChart)`}></g>
         <g className="x-axis"></g>
         <g className="y-axis"></g>
         <g className="toolContainer"></g>

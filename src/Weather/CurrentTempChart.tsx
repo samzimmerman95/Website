@@ -1,13 +1,10 @@
 import * as d3 from "d3";
-import { AnyAaaaRecord } from "node:dns";
-import { SHARE_ENV } from "node:worker_threads";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 
 const margin = { top: 20, right: 20, bottom: 25, left: 25 };
 
 export default function CurrentTempChart({ width, height, data }: any) {
   const ref = useRef(null);
-  //   console.log(data);
   useEffect(() => {
     // Get the SVG and setup
     const svg = d3.select(ref.current);
@@ -73,7 +70,10 @@ export default function CurrentTempChart({ width, height, data }: any) {
         .join("rect")
         .attr("x", scaleX(50))
         .attr("y", (d: any) => scaleY(d.label + " "))
-        .attr("width", (d: any) => scaleX(d.temp) - scaleX(50))
+        .attr("width", (d: any) => {
+          var w: number = scaleX(d.temp) - scaleX(50);
+          return w > 0 ? w : 0;
+        })
         .attr("height", scaleY.bandwidth())
         .on("mouseover", (event: any, data: any) => {
           //   console.log(event, data);
@@ -164,7 +164,7 @@ export default function CurrentTempChart({ width, height, data }: any) {
         .duration(500)
         .style("opacity", 1);
     }
-  }, [width, height, data]);
+  }, [width, height, data.date]);
   return (
     <div className="chart">
       <svg
@@ -177,8 +177,6 @@ export default function CurrentTempChart({ width, height, data }: any) {
           marginLeft: "0px",
         }}
       >
-        <g className="graphContentAir" clipPath={`url(#myLineChart)`}></g>
-        <g className="graphContent2ft" clipPath={`url(#myLineChart)`}></g>
         <g className="x-axis"></g>
         <g className="y-axis"></g>
         <g className="toolContainer"></g>
