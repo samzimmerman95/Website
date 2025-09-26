@@ -21,9 +21,20 @@ export default function WeatherPageRF() {
   const [latest, setLatest] = useState<rawData>({ date: 0, temps: [] });
   const [timeSince, setTimeSince] = useState<number>(0);
   const [selectedLines, setSelectedLines] = useState([0, 1]);
+  const [tableKeys, setTableKeys] = useState<string[]>([]);
+  const [selectedTable, setSelectedTable] = useState<string>("test2");
+
+  // Get all table keys on load
+  useEffect(() => {
+    const dbRef = firebase.database().ref();
+    dbRef.once("value").then((snapshot) => {
+      const keys = Object.keys(snapshot.val() || {});
+      setTableKeys(keys);
+    });
+  }, []);
 
   useEffect(() => {
-    var tempsRef = firebase.database().ref("/test2/");
+    var tempsRef = firebase.database().ref(`/${selectedTable}/`);
     var result: rawData[] = [];
     tempsRef.on("value", (snapshot) => {
       result = Object.entries(snapshot.val()).map(([key, value]: any) => {
@@ -52,7 +63,7 @@ export default function WeatherPageRF() {
         setTimeSince(difference);
       }
     });
-  }, []);
+  }, [selectedTable]);
 
   // Every minute calculate new timeSince and update
   useEffect(() => {
@@ -159,6 +170,20 @@ export default function WeatherPageRF() {
               data={lastWeekData}
             ></ChangeTempChart>
           </div>
+        </div>
+        {/* Dropdown to select table */}
+        <div className="d-flex justify-content-center pb-3">
+          <select
+            className="form-select w-auto"
+            value={selectedTable}
+            onChange={(e) => setSelectedTable(e.target.value)}
+          >
+            {tableKeys.map((key) => (
+              <option key={key} value={key}>
+                {key}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="d-flex justify-content-center pb-2">
           <ToggleButtonGroup
